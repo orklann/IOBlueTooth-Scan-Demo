@@ -7,20 +7,13 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <CoreBluetooth/CoreBluetooth.h>
 #import <IOBluetooth/IOBluetooth.h>
 
-@interface AppDelegate : NSObject <NSApplicationDelegate,CBCentralManagerDelegate,CBPeripheralDelegate>{
-    CBCentralManager *manager;
-    CBPeripheral *peripheral;
-    NSMutableData *finaldata;
+@interface AppDelegate : NSObject <NSApplicationDelegate, IOBluetoothDeviceInquiryDelegate, IOBluetoothDevicePairDelegate, IOBluetoothL2CAPChannelDelegate>{
+    IOBluetoothDevicePair *pair;
+    IOBluetoothDeviceInquiry *central;
+    IOBluetoothDevice *magicMouse;
+    IOBluetoothL2CAPChannel *channel;
 }
-
-@property (assign) IBOutlet NSWindow *window;
-- (IBAction)Connect:(id)sender;
-@property (weak) IBOutlet NSButton *Button;
-- (IBAction)disconnect:(id)sender;
-@property (unsafe_unretained) IBOutlet NSTextView *TextView;
-@property (weak) IBOutlet NSTextFieldCell *RSSIText;
-@property (weak) IBOutlet NSButton *DisconnectButton;
-
 @end
